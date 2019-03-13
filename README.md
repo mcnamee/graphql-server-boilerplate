@@ -41,6 +41,25 @@ cp .env.example .env && nano .env
 yarn start
 ```
 
+---
+
+## File Structure
+
+```
+/prisma/                # Prisma database service configuration
+    /generated/         # Generated files from the `prisma generate` command (not git-tracked)
+    /datamodel.prisma   # Defines your data model (written in GraphQL SDL)
+    /prisma.yml         # The root configuration file for your Prisma database service
+    /seed.graphql       # The database seed
+/src/                   # The source files for your GraphQL server
+    /Helpers/           # Helper functions
+    /Resolvers/         # All Resolvers for the application schema
+    /index.js           # The entry point for your GraphQL server
+    /schema.graphql     # The schema defining the API exposed to client applications
+```
+
+---
+
 ## Deploying to Production
 
 ```sh
