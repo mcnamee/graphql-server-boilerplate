@@ -1,8 +1,9 @@
 # Dependencies
 node_modules/
 
-# Prisma generated content
+# Generated content
 prisma/generated/
+.serverless/
 
 # Environment specific
 .env

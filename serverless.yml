@@ -1,0 +1,28 @@
+service: graphql-server-boilerplate
+
+provider:
+  name: aws
+  runtime: provided
+  memorySize: 512
+  stage: dev
+  region: ap-southeast-2
+
+functions:
+  graphql:
+    handler: src/index.server
+    events:
+    - http:
+        path: /
+        method: post
+        cors: true
+    layers:
+      - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9
+  # playground:
+  #   handler: src/index.playground
+  #   events:
+  #   - http:
+  #       path: /
+  #       method: get
+  #       cors: true
+  #   layers:
+  #     - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9

@@ -67,10 +67,15 @@ yarn start
 ## Deploying to Production
 
 ```sh
-# 1. Deploy the database (eg. to Prisma)
+# 1. Deploy the database (to Prisma)
 yarn deploy-db
 
-# 2. Setup the environment variables on the server, as seen in `.env`
+# 2. Deploy the application files (to AWS Lambda)
+yarn deploy
+
+# 3. Setup the environment variables in prod
+#    - Login to the AWS console > Lambda and browse to the function/s
+#    - Add each of the variables from `.env` in the 'Environment variables' section of each function
 ```
 
 ---
