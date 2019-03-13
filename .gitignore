@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Prisma generated content
+prisma/generated/
+
+# Environment specific
+.env
