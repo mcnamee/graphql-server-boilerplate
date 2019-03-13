@@ -48,7 +48,7 @@ yarn deploy-db
 
 ### Sign Up
 
-```json
+```
 mutation {
   signup(
     email: "zeus@examples.com"
@@ -67,7 +67,7 @@ mutation {
 
 ### Login
 
-```json
+```
 mutation {
   login(
     email: "zeus@examples.com"
@@ -84,7 +84,7 @@ mutation {
 ### Me
 *Requires `"Authorization": "Bearer ...""` header*
 
-```json
+```
 query {
   me {
     id
@@ -103,8 +103,9 @@ query {
 ## Posts
 
 ### Create Draft Post
+*Requires `"Authorization": "Bearer ...""` header*
 
-```json
+```
 mutation {
   createDraft(
     title: "New Draft Post"
@@ -121,8 +122,9 @@ mutation {
 ```
 
 ### Publish one of my Draft Posts
+*Requires `"Authorization": "Bearer ...""` header*
 
-```json
+```
 mutation {
   publish(id: "cjt6q05lh2qi70b45gkux1gfv") {
     id
@@ -137,8 +139,9 @@ mutation {
 ```
 
 ### Delete one of my Posts
+*Requires `"Authorization": "Bearer ...""` header*
 
-```json
+```
 mutation {
   deletePost(id: "cjt6q6des2shk0b45gtusvd9d") {
     id
@@ -149,7 +152,7 @@ mutation {
 
 ### Feed of All Published Posts
 
-```json
+```
 query {
   feed {
     id
@@ -163,8 +166,9 @@ query {
 ```
 
 ### Feed of My Drafted Posts
+*Requires `"Authorization": "Bearer ...""` header*
 
-```json
+```
 query {
   drafts {
     id
