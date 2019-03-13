@@ -112,6 +112,21 @@ mutation {
 }
 ```
 
+### Update My Account
+```
+mutation {
+  updateUser(
+    email: "zeus@example.com"
+    name: "Jane"
+    password: "123Abc123Abc"
+  ) {
+    id
+    name
+    email
+  }
+}
+```
+
 ### Me
 *Requires `"Authorization": "Bearer ...""` header*
 
@@ -131,9 +146,9 @@ query {
 
 ---
 
-## Posts *queries/mutations*
+## Post *queries/mutations*
 
-### Create Draft Post
+### **Create** a (draft) Post
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -152,7 +167,53 @@ mutation {
 }
 ```
 
-### Publish one of my Draft Posts
+### **List** Posts - List of All Published Posts
+
+```
+query {
+  listPosts {
+    id
+    title
+    content
+    author {
+      name
+    }
+  }
+}
+```
+
+### **List** Posts - List of My Drafted Posts
+*Requires `"Authorization": "Bearer ...""` header*
+
+```
+query {
+  listDraftPosts {
+    id
+    title
+    content
+    author {
+      name
+    }
+  }
+}
+```
+
+### **Read** a Post
+
+```
+query {
+  post(id: "cjt74m7fy06at0b18gk07p7ks") {
+    id
+    title
+    content
+    author {
+      name
+    }
+  }
+}
+```
+
+### **Update** a Post (one of my draft Posts to be Published)
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -169,7 +230,7 @@ mutation {
 }
 ```
 
-### Delete one of my Posts
+### **Delete** a Post (one that I own)
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -177,37 +238,6 @@ mutation {
   deletePost(id: "cjt6q6des2shk0b45gtusvd9d") {
     id
     title
-  }
-}
-```
-
-### Feed of All Published Posts
-
-```
-query {
-  feed {
-    id
-    title
-    content
-    author {
-      name
-    }
-  }
-}
-```
-
-### Feed of My Drafted Posts
-*Requires `"Authorization": "Bearer ...""` header*
-
-```
-query {
-  drafts {
-    id
-    title
-    content
-    author {
-      name
-    }
   }
 }
 ```

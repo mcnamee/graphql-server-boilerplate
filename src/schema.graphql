@@ -20,19 +20,19 @@ type AuthPayload {
   user: User!
 }
 
-# Queries
+# Queries that are accepted
 # ------------------------------------------------------------------------------------
 type Query {
   # Posts
-  feed: [Post!]!
-  drafts: [Post!]!
   post(id: ID!): Post
+  listPosts: [Post!]!
+  listDraftPosts: [Post!]!
 
   # Users
   me: User
 }
 
-# Mutations
+# Mutations that are accepted
 # ------------------------------------------------------------------------------------
 type Mutation {
   # Posts
@@ -43,9 +43,10 @@ type Mutation {
   # User
   signup(email: String!, password: String!, name: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
+  updateUser(email: String, password: String, name: String): User!
 }
 
-# Subscriptions
+# Subscriptions that are accepts
 # ------------------------------------------------------------------------------------
 type Subscription {
   # Posts
