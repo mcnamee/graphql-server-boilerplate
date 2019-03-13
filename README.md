@@ -48,12 +48,16 @@ yarn start
 ```
 /prisma/                # Prisma database service configuration
     /generated/         # Generated files from the `prisma generate` command (not git-tracked)
-    /datamodel.prisma   # Defines your data model (written in GraphQL SDL)
+    /datamodel.prisma   # Defines the database structure (written in GraphQL SDL)
     /prisma.yml         # The root configuration file for your Prisma database service
     /seed.graphql       # The database seed
 /src/                   # The source files for your GraphQL server
     /Helpers/           # Helper functions
     /Resolvers/         # All Resolvers for the application schema
+        /Models/        # Updates to data model queries (eg. adding a property to a response)
+        /Mutation/      # Custom mutations (eg. sign up, login...)
+        /Query/         # Custom queries (eg. me)
+        /Subscription/  # Define the data that can be subscribed to
     /index.js           # The entry point for your GraphQL server
     /schema.graphql     # The schema defining the API exposed to client applications
 ```

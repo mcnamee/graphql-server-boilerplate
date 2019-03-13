@@ -1,25 +1,11 @@
-type Query {
-  feed: [Post!]!
-  drafts: [Post!]!
-  post(id: ID!): Post
-  me: User
-}
-
-type Mutation {
-  signup(email: String!, password: String!, name: String!): AuthPayload!
-  login(email: String!, password: String!): AuthPayload!
-  createDraft(title: String!, content: String!): Post!
-  publish(id: ID!): Post!
-  deletePost(id: ID!): Post!
-}
-
-type Subscription {
-  feedSubscription: Post
-}
-
-type AuthPayload {
-  token: String!
-  user: User!
+# Data Types
+# ------------------------------------------------------------------------------------
+type Post {
+  id: ID!
+  published: Boolean!
+  title: String!
+  content: String!
+  author: User!
 }
 
 type User {
@@ -29,10 +15,39 @@ type User {
   posts: [Post!]!
 }
 
-type Post {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
-  author: User!
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+# Queries
+# ------------------------------------------------------------------------------------
+type Query {
+  # Posts
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+
+  # Users
+  me: User
+}
+
+# Mutations
+# ------------------------------------------------------------------------------------
+type Mutation {
+  # Posts
+  createDraft(title: String!, content: String!): Post!
+  publish(id: ID!): Post!
+  deletePost(id: ID!): Post!
+  
+  # User
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+# Subscriptions
+# ------------------------------------------------------------------------------------
+type Subscription {
+  # Posts
+  feedSubscription: Post
 }
