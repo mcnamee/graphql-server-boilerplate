@@ -16,7 +16,6 @@ A boilerplate GraphQL server with:
 
 - Node, NPM and Yarn
 - Prisma CLI installed globally - `yarn global add prisma`
-```
 
 ## Getting started
 
@@ -34,7 +33,7 @@ yarn deploy-db
 yarn start
 ```
 
-## Deploying
+## Deploying to Production
 
 ```sh
 # 1. Deploy the database (eg. to Prisma)
@@ -45,7 +44,7 @@ yarn deploy-db
 
 ---
 
-## Mutations
+## User / Authentication
 
 ### Sign Up
 
@@ -81,6 +80,27 @@ mutation {
   }
 }
 ```
+
+### Me
+*Requires `"Authorization": "Bearer ...""` header*
+
+```json
+query {
+  me {
+    id
+    name
+    email
+    posts {
+      title
+      published
+    }
+  }
+}
+```
+
+---
+
+## Posts
 
 ### Create Draft Post
 
@@ -123,25 +143,6 @@ mutation {
   deletePost(id: "cjt6q6des2shk0b45gtusvd9d") {
     id
     title
-  }
-}
-```
-
-## Queries
-
-### Me
-*Requires `"Authorization": "Bearer ...""` header*
-
-```json
-query {
-  me {
-    id
-    name
-    email
-    posts {
-      title
-      published
-    }
   }
 }
 ```
