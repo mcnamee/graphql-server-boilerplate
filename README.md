@@ -10,8 +10,6 @@ A boilerplate GraphQL server with:
 - JWT Authentication built in
 - Example models for Users and Posts
 
-*Originally based on [node-graphql-server](https://github.com/graphql-boilerplates/node-graphql-server)*
-
 ## Requirements
 
 - Node, NPM and *Yarn*
@@ -113,9 +111,12 @@ yarn graphql-deploy
 
 ---
 
-## User / Authentication *queries/mutations*
+## Available Queries & Mutations
 
-### Sign Up
+### User / Authentication
+
+<details><summary>Sign Up</summary>
+<p>
 
 ```
 mutation {
@@ -133,8 +134,11 @@ mutation {
   }
 }
 ```
+</p>
+</details>
 
-### Login
+<details><summary>Login</summary>
+<p>
 
 ```
 mutation {
@@ -149,8 +153,11 @@ mutation {
   }
 }
 ```
+</p>
+</details>
 
-### Update My Account
+<details><summary>Update My Account</summary>
+<p>
 ```
 mutation {
   updateUser(
@@ -164,8 +171,11 @@ mutation {
   }
 }
 ```
+</p>
+</details>
 
-### Me
+<details><summary>Me</summary>
+<p>
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -181,12 +191,13 @@ query {
   }
 }
 ```
+</p>
+</details>
 
----
+### Post
 
-## Post *queries/mutations*
-
-### **Create** a (draft) Post
+<details><summary>**Create** a (draft) Post</summary>
+<p>
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -204,8 +215,11 @@ mutation {
   }
 }
 ```
+</p>
+</details>
 
-### **List** Posts - List of All Published Posts
+<details><summary>**List** Posts - List of All Published Posts</summary>
+<p>
 
 ```
 query {
@@ -219,8 +233,11 @@ query {
   }
 }
 ```
+</p>
+</details>
 
-### **List** Posts - List of My Drafted Posts
+<details><summary>**List** Posts - List of My Drafted Posts</summary>
+<p>
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -235,8 +252,11 @@ query {
   }
 }
 ```
+</p>
+</details>
 
-### **Read** a Post
+<details><summary>**Read** a Post</summary>
+<p>
 
 ```
 query {
@@ -250,8 +270,11 @@ query {
   }
 }
 ```
+</p>
+</details>
 
-### **Update** a Post (one of my draft Posts to be Published)
+<details><summary>**Update** a Post (one of my draft Posts to be Published)</summary>
+<p>
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -267,8 +290,11 @@ mutation {
   }
 }
 ```
+</p>
+</details>
 
-### **Delete** a Post (one that I own)
+<details><summary>**Delete** a Post (one that I own)</summary>
+<p>
 *Requires `"Authorization": "Bearer ...""` header*
 
 ```
@@ -279,3 +305,5 @@ mutation {
   }
 }
 ```
+</p>
+</details>
