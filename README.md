@@ -158,6 +158,7 @@ mutation {
 
 <details><summary>Update My Account</summary>
 <p>
+
 ```
 mutation {
   updateUser(
@@ -176,7 +177,8 @@ mutation {
 
 <details><summary>Me</summary>
 <p>
-*Requires `"Authorization": "Bearer ...""` header*
+
+*Requires `"Authorization": "Bearer ..."` header*
 
 ```
 query {
@@ -196,9 +198,10 @@ query {
 
 ### Post
 
-<details><summary>**Create** a (draft) Post</summary>
+<details><summary>Create a (draft) Post</summary>
 <p>
-*Requires `"Authorization": "Bearer ...""` header*
+
+*Requires `"Authorization": "Bearer ..."` header*
 
 ```
 mutation {
@@ -218,7 +221,7 @@ mutation {
 </p>
 </details>
 
-<details><summary>**List** Posts - List of All Published Posts</summary>
+<details><summary>List Posts - List of All Published Posts</summary>
 <p>
 
 ```
@@ -236,9 +239,10 @@ query {
 </p>
 </details>
 
-<details><summary>**List** Posts - List of My Drafted Posts</summary>
+<details><summary>List Posts - List of My Drafted Posts</summary>
 <p>
-*Requires `"Authorization": "Bearer ...""` header*
+
+*Requires `"Authorization": "Bearer ..."` header*
 
 ```
 query {
@@ -255,7 +259,7 @@ query {
 </p>
 </details>
 
-<details><summary>**Read** a Post</summary>
+<details><summary>Read a Post</summary>
 <p>
 
 ```
@@ -273,9 +277,10 @@ query {
 </p>
 </details>
 
-<details><summary>**Update** a Post (one of my draft Posts to be Published)</summary>
+<details><summary>Update a Post (one of my draft Posts to be Published)</summary>
 <p>
-*Requires `"Authorization": "Bearer ...""` header*
+
+*Requires `"Authorization": "Bearer ..."` header*
 
 ```
 mutation {
@@ -293,9 +298,10 @@ mutation {
 </p>
 </details>
 
-<details><summary>**Delete** a Post (one that I own)</summary>
+<details><summary>Delete a Post (one that I own)</summary>
 <p>
-*Requires `"Authorization": "Bearer ...""` header*
+
+*Requires `"Authorization": "Bearer ..."` header*
 
 ```
 mutation {
