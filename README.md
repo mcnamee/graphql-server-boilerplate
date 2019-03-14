@@ -16,6 +16,7 @@ A boilerplate GraphQL server with:
 
 - Node, NPM and Yarn
 - Prisma CLI installed globally - `yarn global add prisma`
+- Docker
 
 ## Getting started
 
@@ -23,23 +24,33 @@ A boilerplate GraphQL server with:
 # 1. Install dependencies
 yarn
 
-# 2. Setup a Prisma DB to dev:
-#    - Sign up to https://prisma.io
-#    - Add a new service (follow the prompts)
-#    - Authenticate
-#    - Deploy to Prisma using `Demo Server`
-#    - Choose the name, region and stage
-#    - Note the `endpoint` it outputs
+# 2. Start a local Prisma Server and DB (https://bit.ly/2JpRbQf)
+docker-compose up -d
 
 # 3. Copy `.env.example` to `.env` and add your new DB endpoint and update the keys
 #    - The Prisma setup will manually add the endpoint to your `prisma/prisma.yml` file
 #    - You may choose to switch this back to the `endpoint: ${env:PRISMA_ENDPOINT}` variant
-#    - to use different endpoints per environment
-cp .env.example .env && nano .env
+#      to use different endpoints per environment
+cp .env.example .env.dev .env.prod
 
-# 4. Start server (runs playground on http://localhost:4000)
+# 4. Deploy the data models to your local Prisma server
+yarn prisma-deploy-dev
+
+# 5. Start GraphQL server (runs playground on http://localhost:4000)
 yarn start
 ```
+
+---
+
+## Commands
+
+| Command | Description |
+| --- | --- |
+| `docker-compose up -d` | Starts the local Prisma server and database |
+| `docker-compose stop` | Stops the local Prisma server and database |
+| `yarn start` | Starts the GraphQL-Yoga server |
+| `yarn prisma-deploy-dev` | Deploys Prisma server to using `.env.dev` |
+| `yarn prisma-deploy-prod` | Deploys Prisma server to using `.env.prod` |
 
 ---
 
@@ -47,7 +58,7 @@ yarn start
 
 ```
 /prisma/                # Prisma database service configuration
-    /generated/         # Generated files from the `prisma generate` command (not git-tracked)
+    /generated/         # Generated files from the `prisma generate` command
     /datamodel.prisma   # Defines the database structure (written in GraphQL SDL)
     /prisma.yml         # The root configuration file for your Prisma database service
     /seed.graphql       # The database seed
@@ -67,8 +78,11 @@ yarn start
 ## Deploying to Production
 
 ```sh
+# 1. Setup a Production Prisma Server
+#    - Digital Ocean - https://bit.ly/2JdM713
+
 # 1. Deploy the database (to Prisma)
-yarn deploy-db
+yarn prisma-deploy-prod
 
 # 2. Deploy the application files (to AWS Lambda)
 yarn deploy

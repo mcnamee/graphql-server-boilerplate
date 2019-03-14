@@ -6,4 +6,5 @@ prisma/generated/
 .serverless/
 
 # Environment specific
-.env
+.env.*
+!.env.example
