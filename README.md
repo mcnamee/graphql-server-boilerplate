@@ -14,9 +14,9 @@ A boilerplate GraphQL server with:
 
 ## Requirements
 
-- Node, NPM and Yarn
+- Node, NPM and *Yarn*
 - Prisma CLI installed globally - `yarn global add prisma`
-- Docker
+- Docker and Docker Compose (installed and running)
 
 ## Getting started
 
@@ -24,14 +24,11 @@ A boilerplate GraphQL server with:
 # 1. Install dependencies
 yarn
 
-# 2. Start a local Prisma Server and DB (https://bit.ly/2JpRbQf)
+# 2. Start up a local Prisma Server and DB via Docker (https://bit.ly/2JpRbQf)
 docker-compose up -d
 
 # 3. Copy `.env.example` to `.env` and add your new DB endpoint and update the keys
-#    - The Prisma setup will manually add the endpoint to your `prisma/prisma.yml` file
-#    - You may choose to switch this back to the `endpoint: ${env:PRISMA_ENDPOINT}` variant
-#      to use different endpoints per environment
-cp .env.example .env.dev .env.prod
+cp .env.example .env .env.prod
 
 # 4. Deploy the data models to your local Prisma server
 yarn prisma-deploy-dev
@@ -44,13 +41,17 @@ yarn start
 
 ## Commands
 
-| Command | Description |
-| --- | --- |
-| `docker-compose up -d` | Starts the local Prisma server and database |
-| `docker-compose stop` | Stops the local Prisma server and database |
-| `yarn start` | Starts the GraphQL-Yoga server |
-| `yarn prisma-deploy-dev` | Deploys Prisma server to using `.env.dev` |
-| `yarn prisma-deploy-prod` | Deploys Prisma server to using `.env.prod` |
+|| Command | Description |
+| --- | --- | --- |
+| **Prisma Server** |
+|| `yarn prisma-start` | Starts the local Prisma server and database |
+|| `yarn prisma-stop` | Stops the local Prisma server and database |
+|| `yarn prisma-deploy-dev` | Deploys Prisma server to using `.env` |
+|| `yarn prisma-deploy-prod` | Deploys Prisma server to using `.env.prod` |
+| **GraphQL Server** |
+|| `yarn graphql-start` | Starts the GraphQL-Yoga server |
+|| `yarn graphql-start-debug` | Starts the GraphQL-Yoga server in debug mode |
+|| `yarn graphql-deploy` | Deploys GraphQL server to Lambda |
 
 ---
 
