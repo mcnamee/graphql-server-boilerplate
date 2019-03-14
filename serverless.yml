@@ -17,12 +17,12 @@ functions:
         cors: true
     layers:
       - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9
-  # playground:
-  #   handler: src/index.playground
-  #   events:
-  #   - http:
-  #       path: /
-  #       method: get
-  #       cors: true
-  #   layers:
-  #     - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9
+  playground:
+    handler: src/index.playground
+    events:
+    - http:
+        path: /
+        method: get
+        cors: true
+    layers:
+      - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9
