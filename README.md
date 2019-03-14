@@ -21,17 +21,21 @@ A boilerplate GraphQL server with:
 ## Getting started
 
 ```sh
-# 1. Install dependencies
-yarn
+# --- Prisma Server --- #
 
-# 2. Start up a local Prisma Server and DB via Docker (https://bit.ly/2JpRbQf)
+# 1. Start up a local Prisma Server and DB via Docker (https://bit.ly/2JpRbQf)
 docker-compose up -d
 
-# 3. Copy `.env.example` to `.env` and add your new DB endpoint and update the keys
-cp .env.example .env .env.prod
+# 2. Copy `.env.example` to `.env` and add your new DB endpoint and update the keys
+cp .env.example .env && nano .env
 
-# 4. Deploy the data models to your local Prisma server
+# 3. Deploy the data models to your local Prisma server
 yarn prisma-deploy-dev
+
+# --- GraphQL Server --- #
+
+# 4. Install dependencies
+yarn install
 
 # 5. Start GraphQL server (runs playground on http://localhost:4000)
 yarn start
@@ -79,16 +83,30 @@ yarn start
 ## Deploying to Production
 
 ```sh
+# --- Prisma Server --- #
+
 # 1. Setup a Production Prisma Server
 #    - Digital Ocean - https://bit.ly/2JdM713
+#    - AWS EC2 - https://bit.ly/2TEcces
+#    - AWS Fargate - https://bit.ly/2FdFGqV
+#    - Heroku - https://bit.ly/2THPbYk
+#    - Now.sh - https://bit.ly/2Tzn51b
 
-# 1. Deploy the database (to Prisma)
+# 2. Add the respective Environment variables to .env.prod
+cp .env.example .env.prod && nano .env.prod
+
+# 3. Deploy the data models to the production Prisma server
 yarn prisma-deploy-prod
 
-# 2. Deploy the application files (to AWS Lambda)
-yarn deploy
+# --- GraphQL Server --- #
 
-# 3. Setup the environment variables in prod
+# 4. Deploy the GraphQL Server to AWS Lambda
+#    - Setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
+export AWS_ACCESS_KEY_ID=<secret>
+export AWS_SECRET_ACCESS_KEY=<secret>
+yarn graphql-deploy
+
+# 5. Setup the environment variables in your Lambda
 #    - Login to the AWS console > Lambda and browse to the function/s
 #    - Add each of the variables from `.env` in the 'Environment variables' section of each function
 ```
