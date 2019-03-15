@@ -65,7 +65,7 @@ yarn prisma-deploy-prod
 
 # --- GraphQL Server --- #
 
-# 4. Deploy the GraphQL Server to AWS Lambda
+# 4. Deploy the GraphQL Server to AWS Lambda (does not support subscriptions)
 #    - Setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
 export AWS_ACCESS_KEY_ID=<secret>
 export AWS_SECRET_ACCESS_KEY=<secret>
@@ -310,6 +310,20 @@ mutation {
 ```
 mutation {
   deletePost(id: "cjt6q6des2shk0b45gtusvd9d") {
+    id
+    title
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Subscribe to new Posts (not supported by Lambda yet)</summary>
+<p>
+
+```
+subscription {
+  feedSubscription {
     id
     title
   }
