@@ -65,15 +65,20 @@ yarn prisma-deploy-prod
 
 # --- GraphQL Server --- #
 
-# 4. Deploy the GraphQL Server to AWS Lambda (does not support subscriptions)
-#    - Setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
+# 4. Deploy the GraphQL Server to
+#    - Heroku - https://bit.ly/2FcIbtl
+#    - Now.sh - https://bit.ly/2HvNXrC
+#    - OR Serverless AWS Lambda (does not support subscriptions):
+
+# First setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
 export AWS_ACCESS_KEY_ID=<secret>
 export AWS_SECRET_ACCESS_KEY=<secret>
 yarn graphql-deploy
 
-# 5. Setup the environment variables in your Lambda
-#    - Login to the AWS console > Lambda and browse to the function/s
-#    - Add each of the variables from `.env` in the 'Environment variables' section of each function
+# 5. Add the environment variables from .env.prod
+#    - For AWS Lambda:
+#      - Login to the AWS console > Lambda and browse to the function/s
+#      - Add each of the variables from `.env` in the 'Environment variables' section of each function
 ```
 
 ---
@@ -83,14 +88,14 @@ yarn graphql-deploy
 || Command | Description |
 | --- | --- | --- |
 | **Prisma Server** |
-|| `yarn prisma-start` | Starts the local Prisma server and database |
-|| `yarn prisma-stop` | Stops the local Prisma server and database |
-|| `yarn prisma-deploy-dev` | Deploys Prisma server to using `.env` |
-|| `yarn prisma-deploy-prod` | Deploys Prisma server to using `.env.prod` |
+|| `yarn prisma-start` | **Starts** the local Prisma server and database |
+|| `yarn prisma-stop` | **Stops** the local Prisma server and database |
+|| `yarn prisma-deploy-dev` | **Deploys** Prisma server to using `.env` |
+|| `yarn prisma-deploy-prod` | **Deploys** Prisma server to using `.env.prod` |
 | **GraphQL Server** |
-|| `yarn graphql-start` | Starts the GraphQL-Yoga server |
-|| `yarn graphql-start-debug` | Starts the GraphQL-Yoga server in debug mode |
-|| `yarn graphql-deploy` | Deploys GraphQL server to Lambda |
+|| `yarn graphql-start` | **Starts** the GraphQL-Yoga server |
+|| `yarn graphql-start-debug` | **Starts** the GraphQL-Yoga server in debug mode |
+|| `yarn graphql-deploy-serverless` | **Deploys** GraphQL server to Serverless (Lambda) |
 
 ---
 
