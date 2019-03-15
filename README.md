@@ -51,11 +51,10 @@ yarn start
 # --- Prisma Server --- #
 
 # 1. Setup a Production Prisma Server
+#    - Heroku - https://bit.ly/2THPbYk
 #    - Digital Ocean - https://bit.ly/2JdM713
 #    - AWS EC2 - https://bit.ly/2TEcces
 #    - AWS Fargate - https://bit.ly/2FdFGqV
-#    - Heroku - https://bit.ly/2THPbYk
-#    - Now.sh - https://bit.ly/2Tzn51b
 
 # 2. Add the respective Environment variables to .env.prod
 cp .env.example .env.prod && nano .env.prod
@@ -66,8 +65,8 @@ yarn prisma-deploy-prod
 # --- GraphQL Server --- #
 
 # 4. Deploy the GraphQL Server to
-#    - Heroku - https://bit.ly/2FcIbtl
 #    - Now.sh - https://bit.ly/2HvNXrC
+#    - Heroku - https://bit.ly/2FcIbtl
 #    - OR Serverless AWS Lambda (does not support subscriptions):
 
 # First setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
