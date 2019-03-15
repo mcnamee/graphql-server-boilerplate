@@ -17,14 +17,8 @@ const graphQLServerConfig = {
   }),
 };
 
-// Start a server when testing locally
-if (process.env.APP_ENV === 'local') {
-  const server = new GraphQLServer(graphQLServerConfig);
-  server.start(() => console.log('Server is running on http://localhost:4000'));
-
-// Export for Lambda
-} else {
-  // For Lambda in Prod
+// Export the serverless functions when run on the likes of AWS Lambda
+if (process.env.APP_SERVERLESS === 'true') {
   const lambda = new GraphQLServerLambda(graphQLServerConfig);
 
   exports.server = async (event, context, callback) => {
@@ -36,4 +30,9 @@ if (process.env.APP_ENV === 'local') {
     context.callbackWaitsForEmptyEventLoop = false; // eslint-disable-line
     return lambda.playgroundHandler(event, context, callback);
   };
+
+// Otherwise, Start the GraphQL Server
+} else {
+  const server = new GraphQLServer(graphQLServerConfig);
+  server.start(() => console.log('Server is running on http://localhost:4000'));
 }
