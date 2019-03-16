@@ -26,3 +26,9 @@ functions:
         cors: true
     layers:
       - arn:aws:lambda:ap-southeast-2:553035198032:layer:nodejs11:9
+
+package:
+  exclude:
+    - node_modules/aws-*/**
+    - node_modules/eslint/**
+    - node_modules/flow-bin/**

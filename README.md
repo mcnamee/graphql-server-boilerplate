@@ -72,7 +72,7 @@ yarn prisma-deploy-prod
 # First setup an AWS IAM user to get your keys - https://bit.ly/2TJDcsq
 export AWS_ACCESS_KEY_ID=<secret>
 export AWS_SECRET_ACCESS_KEY=<secret>
-yarn graphql-deploy
+yarn graphql-deploy-serverless
 
 # 5. Add the environment variables from .env.prod
 #    - For AWS Lambda:
