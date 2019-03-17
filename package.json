@@ -14,7 +14,8 @@
     "graphql-deploy-serverless": "serverless deploy",
     "start": "node -r dotenv/config src/index.js",
     "deploy": "npm run graphql-deploy-serverless",
-    "nodemon": "nodemon"
+    "nodemon": "nodemon",
+    "test": "jest"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -29,6 +30,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
+    "jest": "^24.5.0",
     "nodemon": "1.18.10",
     "prisma": "1.28.3",
     "serverless": "^1.38.0"
