@@ -4,6 +4,9 @@
   "keywords": ["nodejs", "prisma", "prisma-client", "graphql", "graphql-yoga", "boilerplate"],
   "author": "https://github.com/mcnamee",
   "license": "MIT",
+  "engines" : {
+    "node" : ">=0.12"
+  },
   "scripts": {
     "prisma-start": "docker-compose up -d",
     "prisma-stop": "docker-compose stop",
