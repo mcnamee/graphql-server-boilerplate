@@ -5,12 +5,16 @@ const { getUserId } = require('../../Helpers/auth');
 /**
  * `Create` a User
  */
-module.exports.signup = async (parent, { name, email, password }, context) => {
+module.exports.signup = async (parent, {
+  firstName, lastName, email, password,
+}, context) => {
   // Create a hashed password
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create the user and generate a token
-  const user = await context.prisma.createUser({ name, email, password: hashedPassword });
+  const user = await context.prisma.createUser({
+    firstName, lastName, email, password: hashedPassword,
+  });
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
   return { token, user };
@@ -19,7 +23,9 @@ module.exports.signup = async (parent, { name, email, password }, context) => {
 /**
  * `Update` a User
  */
-module.exports.updateUser = async (parent, { name, email, password }, context) => {
+module.exports.updateUser = async (parent, {
+  firstName, lastName, email, password,
+}, context) => {
   const id = getUserId(context);
 
   // Ensure user exists
@@ -31,7 +37,8 @@ module.exports.updateUser = async (parent, { name, email, password }, context) =
 
   // Only update the (whitelisted) data that was passed through
   const data = {};
-  if (name) data.name = name;
+  if (firstName) data.firstName = firstName;
+  if (lastName) data.lastName = lastName;
   if (email) data.email = email;
   if (hashedPassword) data.password = hashedPassword;
 
@@ -42,7 +49,7 @@ module.exports.updateUser = async (parent, { name, email, password }, context) =
  * Handles `Login` mutation
  */
 module.exports.login = async (parent, { email, password }, context) => {
-  // Ensure username exists
+  // Ensure user exists
   const user = await context.prisma.user({ email });
   if (!user) throw new Error(`No user found for email: ${email}`);
 

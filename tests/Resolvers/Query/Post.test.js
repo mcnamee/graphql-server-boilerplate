@@ -13,7 +13,8 @@ const mockPostData = {
       content: 'Hello new post that\'s not posted yet',
       published: true,
       author: {
-        name: 'Zeus',
+        firstName: 'Zeus',
+        lastName: 'Zellot',
       },
     },
   },

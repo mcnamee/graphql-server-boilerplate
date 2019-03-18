@@ -133,12 +133,14 @@ mutation {
   signup(
     email: "zeus@examples.com"
     password: "secret42"
-    name: "Zeus"
+    firstName: "Zeus"
+    lastName: "Zellot"
   ) {
     token
     user {
       id
-      name
+      firstName
+      lastName
       email
     }
   }
@@ -173,11 +175,13 @@ mutation {
 mutation {
   updateUser(
     email: "zeus@example.com"
-    name: "Jane"
+    firstName: "Jane"
+    lastName: "Doe"
     password: "123Abc123Abc"
   ) {
     id
-    name
+    firstName
+    lastName
     email
   }
 }
@@ -194,7 +198,8 @@ mutation {
 query {
   me {
     id
-    name
+    firstName
+    lastName
     email
     posts {
       title
@@ -223,7 +228,8 @@ mutation {
     title
     content
     author {
-      name
+      firstName
+      lastName
     }
   }
 }
@@ -241,7 +247,8 @@ query {
     title
     content
     author {
-      name
+      firstName
+      lastName
     }
   }
 }
@@ -261,7 +268,8 @@ query {
     title
     content
     author {
-      name
+      firstName
+      lastName
     }
   }
 }
@@ -279,7 +287,8 @@ query {
     title
     content
     author {
-      name
+      firstName
+      lastName
     }
   }
 }
@@ -300,7 +309,8 @@ mutation {
     content
     published
     author {
-      name
+      firstName
+      lastName
     }
   }
 }

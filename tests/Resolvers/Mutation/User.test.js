@@ -6,7 +6,8 @@ jest.mock('../../../src/Helpers/auth');
 // Mock data
 const mockPostData = {
   id: 'cjtav3ppl000h08888mxj6dfn',
-  name: 'Zeus',
+  firstName: 'Zeus',
+  lastName: 'Zellot',
   email: 'zeus@examples18.com',
   password: '$2a$10$Q/nZIwakkXbXLgQORmMqGO7VyEqxR1gcqL4pKQYusEyFz043pNgOy', // secret42
   posts: [
@@ -59,7 +60,8 @@ describe('Resolvers/Mutation/User', () => {
 
     expect(res).toBeDefined();
     expect(res.email).toBeDefined();
-    expect(res.name).toBeUndefined();
+    expect(res.firstName).toBeUndefined();
+    expect(res.lastName).toBeUndefined();
     expect(res.password).toBeUndefined();
   });
 

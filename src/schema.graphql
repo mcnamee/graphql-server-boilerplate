@@ -11,7 +11,8 @@ type Post {
 type User {
   id: ID!
   email: String!
-  name: String!
+  firstName: String!
+  lastName: String!
   posts: [Post!]!
 }
 
@@ -41,9 +42,9 @@ type Mutation {
   deletePost(id: ID!): Post!
   
   # User
-  signup(email: String!, password: String!, name: String!): AuthPayload!
+  signup(email: String!, password: String!, firstName: String!, lastName: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
-  updateUser(email: String, password: String, name: String): User!
+  updateUser(email: String, password: String, firstName: String, lastName: String): User!
 }
 
 # Subscriptions that are accepts
