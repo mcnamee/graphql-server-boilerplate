@@ -4,6 +4,7 @@ node_modules/
 # Generated content
 prisma/generated/
 .serverless/
+coverage
 
 # Environment specific
 .env

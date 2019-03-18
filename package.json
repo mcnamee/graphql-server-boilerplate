@@ -18,7 +18,7 @@
     "start": "node -r dotenv/config src/index.js",
     "deploy": "npm run graphql-deploy-serverless",
     "nodemon": "nodemon",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
