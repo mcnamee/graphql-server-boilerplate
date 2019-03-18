@@ -95,6 +95,8 @@ yarn graphql-deploy-serverless
 || `yarn graphql-start` | **Starts** the GraphQL-Yoga server |
 || `yarn graphql-start-debug` | **Starts** the GraphQL-Yoga server in debug mode |
 || `yarn graphql-deploy-serverless` | **Deploys** GraphQL server to Serverless (Lambda) |
+| **Tests** |
+|| `yarn test` | **Tests** GraphQL server |
 
 ---
 
