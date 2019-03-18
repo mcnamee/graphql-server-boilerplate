@@ -12,9 +12,25 @@ module.exports.signup = async (parent, {
   // Create a hashed password
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  // Create a email verification token
+  let emailVerifiedToken = Math.random().toString(36).substring(2, 15);
+  emailVerifiedToken += Math.random().toString(36).substring(2, 15);
+
+  // Send an email (in the background) containing the verification token
+  try {
+    transport.sendMail({
+      from: process.env.MAIL_FROM,
+      to: email,
+      subject: 'Please verify your email address',
+      html: htmlEmail(`This is your verification token:
+      \n\n
+      ${emailVerifiedToken}`),
+    });
+  } catch (err) { console.log(err); }
+
   // Create the user and generate a token
   const user = await context.prisma.createUser({
-    firstName, lastName, email, password: hashedPassword,
+    firstName, lastName, email, password: hashedPassword, emailVerifiedToken,
   });
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
@@ -121,4 +137,22 @@ module.exports.resetPassword = async (parent, { resetToken, password }, context)
     token: jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET),
     user: updatedUser,
   };
+};
+
+/**
+ * Handles `Email Verification` mutation
+ */
+module.exports.verifyEmail = async (parent, { emailVerifiedToken }, context) => {
+  // Ensure `resetToken` exists against user
+  const [user] = await context.prisma.users({ where: { emailVerifiedToken } });
+  if (!user) throw new Error('Token doesn\'t exist');
+
+  // User already verified, show a suitable message
+  if (user && user.emailVerified) throw new Error('This email has already been verified');
+
+  const data = { emailVerified: true };
+  const updatedUser = await context.prisma.updateUser({ where: { id: user.id }, data });
+
+  // Return token and user data
+  return { ...updatedUser };
 };

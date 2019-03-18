@@ -11,9 +11,11 @@ type Post {
 type User {
   id: ID!
   email: String!
+  emailVerified: Boolean!
+  # emailVerifiedToken: String
   firstName: String!
   lastName: String!
-  resetToken: String
+  # resetToken: String
   resetTokenExpires: Float
   name: String
   posts: [Post!]!
@@ -54,6 +56,7 @@ type Mutation {
   forgotPassword(email: String!): SuccessMessage
   resetPassword(resetToken: String!, password: String!): AuthPayload!
   updateUser(email: String, password: String, firstName: String, lastName: String): User!
+  verifyEmail(emailVerifiedToken: String!): User!
 }
 
 # Subscriptions that are accepts

@@ -11,6 +11,8 @@ type Post {
 type User {
   id: ID! @unique
   email: String! @unique
+  emailVerified: Boolean! @default(value: "false")
+  emailVerifiedToken: String
   password: String!
   firstName: String!
   lastName: String!

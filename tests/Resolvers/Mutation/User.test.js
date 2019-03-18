@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 const {
-  signup, updateUser, login, forgotPassword, resetPassword,
+  signup, updateUser, login, forgotPassword, resetPassword, verifyEmail,
 } = require('../../../src/Resolvers/Mutation/User');
 
 jest.mock('../../../src/Helpers/auth');
@@ -11,6 +11,7 @@ const mockPostData = {
   firstName: 'Zeus',
   lastName: 'Zellot',
   email: 'zeus@examples18.com',
+  emailVerified: true,
   password: '$2a$10$Q/nZIwakkXbXLgQORmMqGO7VyEqxR1gcqL4pKQYusEyFz043pNgOy', // secret42
   posts: [
     {
@@ -115,5 +116,22 @@ describe('Resolvers/Mutation/User', () => {
 
     await expect(resetPassword(null, { resetToken: '123', password: 'abc' }, context))
       .rejects.toThrowError(/expired/);
+  });
+
+  /**
+   * verifyEmail()
+   */
+  test('`verifyEmail()` should throw on token error', async () => {
+    context.prisma.users = jest.fn(() => []);
+
+    await expect(verifyEmail(null, { emailVerifiedToken: '123' }, context))
+      .rejects.toThrowError(/Token doesn/);
+  });
+
+  test('`verifyEmail()` should throw when already verified', async () => {
+    context.prisma.users = jest.fn(() => [mockPostData]);
+
+    await expect(verifyEmail(null, { emailVerifiedToken: '123' }, context))
+      .rejects.toThrowError(/already been verified/);
   });
 });

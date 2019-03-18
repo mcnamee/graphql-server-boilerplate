@@ -247,6 +247,23 @@ mutation {
 </p>
 </details>
 
+<details><summary>Verify Email (using token from email)</summary>
+<p>
+
+```
+mutation {
+  verifyEmail(
+    emailVerifiedToken: "v0db287br2atjvfsrc4wl"
+  ) {
+    id
+    name
+    email
+  }
+}
+```
+</p>
+</details>
+
 ### Post
 
 <details><summary>Create a (draft) Post</summary>
