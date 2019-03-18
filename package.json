@@ -32,18 +32,18 @@
     "graphql-yoga": "1.17.4",
     "jsonwebtoken": "8.5.0",
     "nodemailer": "^5.1.1",
-    "prisma-client-lib": "1.28.3"
+    "prisma-client-lib": "1.28.5"
   },
   "devDependencies": {
-    "dotenv": "6.2.0",
-    "eslint": "5.3.0",
+    "dotenv": "7.0.0",
+    "eslint": "5.15.2",
     "eslint-config-airbnb": "17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^24.5.0",
     "nodemon": "1.18.10",
-    "prisma": "1.28.3",
-    "serverless": "^1.38.0"
+    "prisma": "1.28.5",
+    "serverless": "^1.39.0"
   }
 }

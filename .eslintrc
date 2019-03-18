@@ -7,10 +7,10 @@
     "no-console": 0
   },
   "globals": {
-    "beforeEach": "off",
-    "describe": "off",
-    "expect": "off",
-    "jest": "off",
-    "test": "off"
+    "beforeEach": "readonly",
+    "describe": "readonly",
+    "expect": "readonly",
+    "jest": "readonly",
+    "test": "readonly"
   }
 }
