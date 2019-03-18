@@ -13,6 +13,7 @@ type User {
   email: String!
   firstName: String!
   lastName: String!
+  name: String
   posts: [Post!]!
 }
 
