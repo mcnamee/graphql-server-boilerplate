@@ -343,6 +343,8 @@ type User {
   password: String!
   firstName: String!
   lastName: String!
+  resetToken: String
+  resetTokenExpires: Float
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
 }
 
@@ -357,6 +359,8 @@ input UserCreateInput {
   password: String!
   firstName: String!
   lastName: String!
+  resetToken: String
+  resetTokenExpires: Float
   posts: PostCreateManyWithoutAuthorInput
 }
 
@@ -370,6 +374,8 @@ input UserCreateWithoutPostsInput {
   password: String!
   firstName: String!
   lastName: String!
+  resetToken: String
+  resetTokenExpires: Float
 }
 
 type UserEdge {
@@ -388,6 +394,10 @@ enum UserOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpires_ASC
+  resetTokenExpires_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -400,6 +410,8 @@ type UserPreviousValues {
   password: String!
   firstName: String!
   lastName: String!
+  resetToken: String
+  resetTokenExpires: Float
 }
 
 type UserSubscriptionPayload {
@@ -425,6 +437,8 @@ input UserUpdateInput {
   password: String
   firstName: String
   lastName: String
+  resetToken: String
+  resetTokenExpires: Float
   posts: PostUpdateManyWithoutAuthorInput
 }
 
@@ -433,6 +447,8 @@ input UserUpdateManyMutationInput {
   password: String
   firstName: String
   lastName: String
+  resetToken: String
+  resetTokenExpires: Float
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -447,6 +463,8 @@ input UserUpdateWithoutPostsDataInput {
   password: String
   firstName: String
   lastName: String
+  resetToken: String
+  resetTokenExpires: Float
 }
 
 input UserUpsertWithoutPostsInput {
@@ -525,6 +543,28 @@ input UserWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpires: Float
+  resetTokenExpires_not: Float
+  resetTokenExpires_in: [Float!]
+  resetTokenExpires_not_in: [Float!]
+  resetTokenExpires_lt: Float
+  resetTokenExpires_lte: Float
+  resetTokenExpires_gt: Float
+  resetTokenExpires_gte: Float
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput

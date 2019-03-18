@@ -14,5 +14,7 @@ type User {
   password: String!
   firstName: String!
   lastName: String!
+  resetToken: String
+  resetTokenExpires: Float
   posts: [Post!]!
 }

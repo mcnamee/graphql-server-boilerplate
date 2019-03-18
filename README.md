@@ -211,6 +211,42 @@ query {
 </p>
 </details>
 
+<details><summary>Forgot Password (send password reset email)</summary>
+<p>
+
+```
+mutation {
+  forgotPassword(
+    email: "alice@prisma.io"
+  ) {
+    message
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Reset Password (using token from email)</summary>
+<p>
+
+```
+mutation {
+  resetPassword(
+    resetToken: "v0db287br2atjvfsrc4wl"
+    password: "secret42"
+  ) {
+    token
+    user {
+      id
+      name
+      email
+    }
+  }
+}
+```
+</p>
+</details>
+
 ### Post
 
 <details><summary>Create a (draft) Post</summary>

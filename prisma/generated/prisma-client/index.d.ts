@@ -171,6 +171,10 @@ export type UserOrderByInput =
   | "firstName_DESC"
   | "lastName_ASC"
   | "lastName_DESC"
+  | "resetToken_ASC"
+  | "resetToken_DESC"
+  | "resetTokenExpires_ASC"
+  | "resetTokenExpires_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -178,11 +182,11 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserUpdateOneRequiredWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  update?: UserUpdateWithoutPostsDataInput;
-  upsert?: UserUpsertWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
+export interface PostUpdateInput {
+  published?: Boolean;
+  title?: String;
+  content?: String;
+  author?: UserUpdateOneRequiredWithoutPostsInput;
 }
 
 export type PostWhereUniqueInput = AtLeastOne<{
@@ -199,6 +203,8 @@ export interface UserCreateInput {
   password: String;
   firstName: String;
   lastName: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
   posts?: PostCreateManyWithoutAuthorInput;
 }
 
@@ -223,6 +229,250 @@ export interface PostUpdateManyWithoutAuthorInput {
 export interface UserUpsertWithoutPostsInput {
   update: UserUpdateWithoutPostsDataInput;
   create: UserCreateWithoutPostsInput;
+}
+
+export interface UserUpdateInput {
+  email?: String;
+  password?: String;
+  firstName?: String;
+  lastName?: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
+  posts?: PostUpdateManyWithoutAuthorInput;
+}
+
+export interface PostWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  published?: Boolean;
+  published_not?: Boolean;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  author?: UserWhereInput;
+  AND?: PostWhereInput[] | PostWhereInput;
+  OR?: PostWhereInput[] | PostWhereInput;
+  NOT?: PostWhereInput[] | PostWhereInput;
+}
+
+export interface PostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PostWhereInput;
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+}
+
+export interface PostUpdateManyDataInput {
+  published?: Boolean;
+  title?: String;
+  content?: String;
+}
+
+export interface PostCreateInput {
+  published?: Boolean;
+  title: String;
+  content: String;
+  author: UserCreateOneWithoutPostsInput;
+}
+
+export interface PostScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  published?: Boolean;
+  published_not?: Boolean;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  AND?: PostScalarWhereInput[] | PostScalarWhereInput;
+  OR?: PostScalarWhereInput[] | PostScalarWhereInput;
+  NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
+}
+
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export interface UserCreateWithoutPostsInput {
+  email: String;
+  password: String;
+  firstName: String;
+  lastName: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface PostCreateWithoutAuthorInput {
+  published?: Boolean;
+  title: String;
+  content: String;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: String;
+  password?: String;
+  firstName?: String;
+  lastName?: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
+}
+
+export interface PostUpdateManyMutationInput {
+  published?: Boolean;
+  title?: String;
+  content?: String;
+}
+
+export interface PostCreateManyWithoutAuthorInput {
+  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutPostsDataInput {
+  email?: String;
+  password?: String;
+  firstName?: String;
+  lastName?: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
+}
+
+export interface UserUpdateOneRequiredWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  update?: UserUpdateWithoutPostsDataInput;
+  upsert?: UserUpsertWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput;
+  data: PostUpdateManyDataInput;
 }
 
 export interface UserWhereInput {
@@ -296,6 +546,28 @@ export interface UserWhereInput {
   lastName_not_starts_with?: String;
   lastName_ends_with?: String;
   lastName_not_ends_with?: String;
+  resetToken?: String;
+  resetToken_not?: String;
+  resetToken_in?: String[] | String;
+  resetToken_not_in?: String[] | String;
+  resetToken_lt?: String;
+  resetToken_lte?: String;
+  resetToken_gt?: String;
+  resetToken_gte?: String;
+  resetToken_contains?: String;
+  resetToken_not_contains?: String;
+  resetToken_starts_with?: String;
+  resetToken_not_starts_with?: String;
+  resetToken_ends_with?: String;
+  resetToken_not_ends_with?: String;
+  resetTokenExpires?: Float;
+  resetTokenExpires_not?: Float;
+  resetTokenExpires_in?: Float[] | Float;
+  resetTokenExpires_not_in?: Float[] | Float;
+  resetTokenExpires_lt?: Float;
+  resetTokenExpires_lte?: Float;
+  resetTokenExpires_gt?: Float;
+  resetTokenExpires_gte?: Float;
   posts_every?: PostWhereInput;
   posts_some?: PostWhereInput;
   posts_none?: PostWhereInput;
@@ -304,106 +576,10 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface PostSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-}
-
-export interface PostCreateInput {
-  published?: Boolean;
-  title: String;
-  content: String;
-  author: UserCreateOneWithoutPostsInput;
-}
-
-export interface PostUpdateManyDataInput {
+export interface PostUpdateWithoutAuthorDataInput {
   published?: Boolean;
   title?: String;
   content?: String;
-}
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface PostScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  published?: Boolean;
-  published_not?: Boolean;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
-  AND?: PostScalarWhereInput[] | PostScalarWhereInput;
-  OR?: PostScalarWhereInput[] | PostScalarWhereInput;
-  NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
-}
-
-export interface UserCreateWithoutPostsInput {
-  email: String;
-  password: String;
-  firstName: String;
-  lastName: String;
 }
 
 export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
@@ -411,146 +587,6 @@ export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
   update: PostUpdateWithoutAuthorDataInput;
   create: PostCreateWithoutAuthorInput;
 }
-
-export interface PostUpdateInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-  author?: UserUpdateOneRequiredWithoutPostsInput;
-}
-
-export interface PostWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  published?: Boolean;
-  published_not?: Boolean;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  content?: String;
-  content_not?: String;
-  content_in?: String[] | String;
-  content_not_in?: String[] | String;
-  content_lt?: String;
-  content_lte?: String;
-  content_gt?: String;
-  content_gte?: String;
-  content_contains?: String;
-  content_not_contains?: String;
-  content_starts_with?: String;
-  content_not_starts_with?: String;
-  content_ends_with?: String;
-  content_not_ends_with?: String;
-  author?: UserWhereInput;
-  AND?: PostWhereInput[] | PostWhereInput;
-  OR?: PostWhereInput[] | PostWhereInput;
-  NOT?: PostWhereInput[] | PostWhereInput;
-}
-
-export interface UserUpdateInput {
-  email?: String;
-  password?: String;
-  firstName?: String;
-  lastName?: String;
-  posts?: PostUpdateManyWithoutAuthorInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  email?: String;
-  password?: String;
-  firstName?: String;
-  lastName?: String;
-}
-
-export interface PostCreateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-}
-
-export interface PostUpdateManyMutationInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-}
-
-export interface PostCreateWithoutAuthorInput {
-  published?: Boolean;
-  title: String;
-  content: String;
-}
-
-export interface UserUpdateWithoutPostsDataInput {
-  email?: String;
-  password?: String;
-  firstName?: String;
-  lastName?: String;
-}
-
-export interface PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput;
-  data: PostUpdateManyDataInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface PostUpdateWithoutAuthorDataInput {
-  published?: Boolean;
-  title?: String;
-  content?: String;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  email?: String;
-}>;
 
 export interface NodeNode {
   id: ID_Output;
@@ -562,6 +598,8 @@ export interface UserPreviousValues {
   password: String;
   firstName: String;
   lastName: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
 }
 
 export interface UserPreviousValuesPromise
@@ -572,6 +610,8 @@ export interface UserPreviousValuesPromise
   password: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpires: () => Promise<Float>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -582,6 +622,8 @@ export interface UserPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpires: () => Promise<AsyncIterator<Float>>;
 }
 
 export interface PostPreviousValues {
@@ -662,21 +704,27 @@ export interface AggregatePostSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PostEdge {
-  node: Post;
-  cursor: String;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
 }
 
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -750,29 +798,6 @@ export interface PostConnectionSubscription
   aggregate: <T = AggregatePostSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
 export interface BatchPayload {
   count: Long;
 }
@@ -787,6 +812,23 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface PostEdge {
+  node: Post;
+  cursor: String;
+}
+
+export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
+  node: <T = PostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PostEdgeSubscription
+  extends Promise<AsyncIterator<PostEdge>>,
+    Fragmentable {
+  node: <T = PostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateUser {
@@ -811,6 +853,8 @@ export interface User {
   password: String;
   firstName: String;
   lastName: String;
+  resetToken?: String;
+  resetTokenExpires?: Float;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -819,6 +863,8 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   password: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpires: () => Promise<Float>;
   posts: <T = FragmentableArray<Post>>(
     args?: {
       where?: PostWhereInput;
@@ -840,6 +886,8 @@ export interface UserSubscription
   password: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpires: () => Promise<AsyncIterator<Float>>;
   posts: <T = Promise<AsyncIterator<PostSubscription>>>(
     args?: {
       where?: PostWhereInput;
@@ -905,9 +953,9 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
 */
-export type Boolean = boolean;
+export type Float = number;
 
 /*
 DateTime scalar input type, allowing Date
@@ -923,6 +971,11 @@ export type DateTimeOutput = string;
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /**
  * Model Metadata

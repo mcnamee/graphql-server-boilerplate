@@ -1,5 +1,7 @@
 const dotenv = require('dotenv');
-const { signup, updateUser, login } = require('../../../src/Resolvers/Mutation/User');
+const {
+  signup, updateUser, login, forgotPassword, resetPassword,
+} = require('../../../src/Resolvers/Mutation/User');
 
 jest.mock('../../../src/Helpers/auth');
 
@@ -91,5 +93,27 @@ describe('Resolvers/Mutation/User', () => {
     expect(res).toBeDefined();
     expect(res.token).toBeDefined();
     expect(res.user.email).toEqual(mockPostData.email);
+  });
+
+  /**
+   * forgotPassword()
+   */
+  test('`forgotPassword()` should throw when email can\'t be found', async () => {
+    context.prisma.user = jest.fn(() => null);
+
+    await expect(forgotPassword(null, { email: 'zeus@examples18.com' }, context))
+      .rejects.toThrowError(/not authorized/);
+  });
+
+  /**
+   * resetPassword()
+   */
+  test('`resetPassword()` should throw on token error', async () => {
+    // mockPostData.resetToken = 'abc';
+    // mockPostData.resetTokenExpires = Date.now() - 3600000; // Expired an hour ago
+    context.prisma.users = jest.fn(() => []);
+
+    await expect(resetPassword(null, { resetToken: '123', password: 'abc' }, context))
+      .rejects.toThrowError(/expired/);
   });
 });
