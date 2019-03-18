@@ -4,6 +4,7 @@ const {
 } = require('../../../src/Resolvers/Mutation/User');
 
 jest.mock('../../../src/Helpers/auth');
+jest.mock('../../../src/Helpers/mail');
 
 // Mock data
 const mockPostData = {
