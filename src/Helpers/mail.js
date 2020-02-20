@@ -9,7 +9,7 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const htmlEmail = text => `
+const htmlEmail = (text) => `
   <div className="email" style="
     border: 1px solid black;
     padding: 40px;

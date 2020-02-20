@@ -59,7 +59,7 @@ type Mutation {
   verifyEmail(emailVerifiedToken: String!): User!
 }
 
-# Subscriptions that are accepts
+# Subscriptions that are accepted
 # ------------------------------------------------------------------------------------
 type Subscription {
   # Posts

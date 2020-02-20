@@ -1,20 +1,22 @@
+/**
+ * Starts the GraphQL server (including playground)
+ */
 const { GraphQLServer, GraphQLServerLambda } = require('graphql-yoga');
 const { prisma } = require('../prisma/generated/prisma-client');
 
+// Resolvers
 const Query = require('./Resolvers/Query');
 const Mutation = require('./Resolvers/Mutation');
 const Subscription = require('./Resolvers/Subscription');
 const Models = require('./Resolvers/Models');
 
+// Setup server config
 const graphQLServerConfig = {
   typeDefs: 'src/schema.graphql',
   resolvers: {
     Query, Mutation, Subscription, ...Models,
   },
-  context: request => ({
-    ...request,
-    prisma,
-  }),
+  context: (request) => ({ ...request, prisma }),
 };
 
 // Export the serverless functions when run on the likes of AWS Lambda
